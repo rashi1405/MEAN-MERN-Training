@@ -1,46 +1,58 @@
-import { v4 as uuidv4 } from 'uuid';
+const User = require('../models/user');
 
-let users = [];
+async function getUser(req, res) {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (err) {
+    res.send('Error ' + err);
+  }
+}
 
-export const createUser = (req, res) => {
-  const user = req.body;
+async function getUserById(req, res) {
+  try {
+    const user = await User.findById(req.params.id);
+    res.json(user);
+  } catch (err) {
+    res.send('Error ' + err);
+  }
+}
 
-  users.push({ ...user, id: uuidv4() });
+async function addUser(req, res) {
+  const user = new User({
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+  });
 
-  res.send(`User with the name ${user.firstname} added to the database`);
-};
+  try {
+    const u1 = await user.save();
+    res.json(u1);
+  } catch (err) {
+    res.send('Error');
+  }
+}
 
-export const getUser = (req, res) => {
-  res.send(users);
-};
+async function updateUser(req, res) {
+  try {
+    const user = await User.findById(req.params.id);
+    password: req.body.password,
+    const u1 = await user.save();
+    res.json(u1);
+  } catch (err) {
+    res.send('Error');
+  }
+}
 
-export const findUser = (req, res) => {
-  const { id } = req.params;
 
-  const foundUser = users.find((user) => user.id == id);
+async function deleteUser(req, res) {
+  try {
+    const user = await User.findById(req.params.id);
+    const u1 = await user.delete();
+    res.json(u1);
+  } catch (err) {
+    res.send('Error');
+  }
+}
 
-  res.send(foundUser);
-};
-
-export const deleteUser = (req, res) => {
-  const { id } = req.params;
-
-  users = users.filter((user) => user.id !== id);
-
-  res.send(`User with the id ${id} deleted from the database`);
-};
-
-export const updateUser = (req, res) => {
-  const { id } = req.params;
-  const { firstname, lastname, age } = req.body;
-
-  const user = users.find((user) => user.id == id);
-
-  if (firstname) user.firstname = firstname;
-
-  if (lastname) user.lastname = lastname;
-
-  if (age) user.age = age;
-
-  res.send(`User with the id ${id} has been updated in the database`);
-};
+module.exports = { getUser, getUserById, addUser, updateUser , deleteUser};
