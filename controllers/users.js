@@ -44,4 +44,16 @@ async function updateUser(req, res) {
   }
 }
 
-module.exports = { getUser, getUserById, addUser, updateUser };
+
+async function deleteUser(req, res) {
+  try {
+    const user = await User.findById(req.params.id);
+    user.sub = req.body.sub;
+    const u1 = await user.delete();
+    res.json(u1);
+  } catch (err) {
+    res.send('Error');
+  }
+}
+
+module.exports = { getUser, getUserById, addUser, updateUser , deleteUser};
