@@ -21,8 +21,8 @@ async function getUserById(req, res) {
 async function addUser(req, res) {
   const user = new User({
     name: req.body.name,
-    tech: req.body.tech,
-    sub: req.body.sub,
+    email: req.body.email,
+    password: req.body.password,
   });
 
   try {
@@ -36,7 +36,7 @@ async function addUser(req, res) {
 async function updateUser(req, res) {
   try {
     const user = await User.findById(req.params.id);
-    user.sub = req.body.sub;
+    password: req.body.password,
     const u1 = await user.save();
     res.json(u1);
   } catch (err) {
@@ -48,7 +48,6 @@ async function updateUser(req, res) {
 async function deleteUser(req, res) {
   try {
     const user = await User.findById(req.params.id);
-    user.sub = req.body.sub;
     const u1 = await user.delete();
     res.json(u1);
   } catch (err) {
