@@ -18,11 +18,13 @@
  # Request Body :
  
  {
+ 
      name : String ,
      
      email : String ,
      
      password : Number 
+     
  }
  
  # Validations :
