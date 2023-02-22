@@ -1,6 +1,7 @@
 const express = require('express');
 const {
   getBook,
+  deleteBook,
   getBookById,
   addBook,
   updateBook,
@@ -17,6 +18,6 @@ router.post('/', addBook);
 
 router.patch('/:id', updateBook);
 
-//router.delete('/:id', deleteUser);
+router.delete('/:id', deleteBook);
 
 module.exports = router;
