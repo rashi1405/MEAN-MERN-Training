@@ -5,14 +5,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  tech: {
+email: {
     type: String,
     required: true,
   },
-  sub: {
-    type: Boolean,
+  password: {
+    type: Number,
     required: true,
-    default: false,
   },
 });
 
