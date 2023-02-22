@@ -1,1 +1,0 @@
-Mern Stack Training project 
