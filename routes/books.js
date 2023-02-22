@@ -4,6 +4,7 @@ const {
   getBookById,
   addBook,
   updateBook,
+  deleteBook,
 } = require('../controllers/books');
 
 const router = express.Router();
@@ -17,6 +18,6 @@ router.post('/', addBook);
 
 router.patch('/:id', updateBook);
 
-//router.delete('/:id', deleteUser);
+router.delete('/:id', deleteUser);
 
 module.exports = router;
