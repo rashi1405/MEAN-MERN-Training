@@ -39,7 +39,9 @@ async function addUser(req, res) {
 async function updateUser(req, res) {
   try {
     const user = await User.findById(req.params.id);
+
     user.password= req.body.password
+
     const u1 = await user.save();
     res.json(u1);
   } catch (err) {
