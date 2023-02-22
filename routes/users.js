@@ -3,6 +3,7 @@ const express = require('express');
 const {
   getUser,
   getUserById,
+  deleteUser,
   addUser,
   updateUser,
 } = require('../controllers/users');
@@ -17,7 +18,7 @@ router.get('/:id', getUserById);
 
 router.post('/', validateUser, validate, addUser);
 
-// router.delete('/:id', deleteUser);
+router.delete('/:id', deleteUser);
 
 router.patch('/:id', updateUser);
 
