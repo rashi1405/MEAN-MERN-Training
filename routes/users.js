@@ -5,7 +5,12 @@ const{
   getUserById,
   getUser,
   updateUser,
+  registerUser,
+  LoginUser,
+  CurrentUser
 } = require('../controllers/users');
+
+const  validateToken = require("../middlewares/validateTokenHandler")
 
 const { validateUser, validate } = require('../middlewares/validator');
 
@@ -21,5 +26,12 @@ router.get('/:id', getUserById);
 router.delete('/:id', deleteUser);
 
 router.patch('/:id', updateUser);
+
+router.post("/register", registerUser);
+
+router.post("/login", LoginUser);
+
+router.get("/current", validateToken,CurrentUser);
+
 
 module.exports = router;
