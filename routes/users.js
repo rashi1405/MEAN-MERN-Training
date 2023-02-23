@@ -5,6 +5,7 @@ const{
   getUserById,
   getUser,
   updateUser,
+  login
 } = require('../controllers/users');
 
 const { validateUser, validate } = require('../middlewares/validator');
@@ -14,7 +15,8 @@ const User = require('../models/user');
 
 router.get('/', getUser);
 
-router.post('/',validateUser, validate,  addUser);
+router.post('/', [validateUser, validate],  addUser);
+router.post('/login', login);
 
 router.get('/:id', getUserById);
 

@@ -1,6 +1,6 @@
-import express from 'express';
+const express = require('express');
 const mongoose = require('mongoose');
-const url = 'mongodb://localhost/UserDB';
+const url = 'mongodb://localhost:27017/UserDB';
 
 const app = express();
 const PORT = 5000;
@@ -16,7 +16,7 @@ con.on('open', () => {
 app.use(express.json());
 
 const userRouter = require('./routes/users');
-app.use('/users', usersRouter);
+app.use('/users', userRouter);
 
 const bookRouter = require('./routes/books');
 app.use('/books', bookRouter);

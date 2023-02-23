@@ -7,17 +7,19 @@ const {
   deleteBook,
 } = require('../controllers/books');
 
+const { verifyToken } = require("../middlewares/auth-verify");
+
 const router = express.Router();
 const book = require('../models/book');
 
-router.get('/', getBook);
+router.get('/', verifyToken, getBook);
 
-router.get('/:id', getBookById);
+router.get('/:id', verifyToken, getBookById);
 
-router.post('/', addBook);
+router.post('/', verifyToken, addBook);
 
-router.patch('/:id', updateBook);
+router.patch('/:id', verifyToken, updateBook);
 
-router.delete('/:id', deleteBook);
+router.delete('/:id', verifyToken, deleteBook);
 
 module.exports = router;
