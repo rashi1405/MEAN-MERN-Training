@@ -1,4 +1,4 @@
-import express from 'express';
+const express = require('express');
 const mongoose = require('mongoose');
 const url = 'mongodb://localhost/UserDB';
 
