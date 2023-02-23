@@ -10,7 +10,8 @@ exports.validateUser = [
     .withMessage('Invalid name'),
 
   check('email').normalizeEmail().isEmail().withMessage('Email is invalid'),
-  check('password').not().isEmpty().withMessage('Password is missing'),
+  check('password').not().isEmpty().withMessage('Password is missing').isNumeric()
+    .withMessage('Enter numbers only for Password '),
 ];
 
 exports.validate = (req, res, next) => {
