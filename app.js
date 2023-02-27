@@ -1,4 +1,4 @@
-import express from 'express';
+const express = require('express');
 const mongoose = require('mongoose');
 const url = 'mongodb://localhost/UserDB';
 
@@ -16,7 +16,9 @@ con.on('open', () => {
 app.use(express.json());
 
 const userRouter = require('./routes/users');
-app.use('/users', usersRouter);
+
+app.use('/users', userRouter);
+
 
 const bookRouter = require('./routes/books');
 app.use('/books', bookRouter);
